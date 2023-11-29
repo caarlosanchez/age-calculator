@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | Age calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+ 
+ 
+</head>
+<body>
+    <section>
+      <div class="inputs">
+          <div class="input_day">
+            <label  for="day">DAY </label>
+            <input id="day" type="number" placeholder="DD" required>
+          </div>
+          <div class="input_month">
+            <label for="month">MONTH </label>
+            <input id="month" type="number" placeholder="MM" required>
+          </div>
+          <div class="input_year">
+            <label for="year">YEAR </label>
+            <input id="year" type="number" placeholder="YYYY" required>
+          </div>   
+      </div>
+      <div class="linea">
+        <div onclick="calcularEdad()" class="arrow">
+          <img src="./assets/images/icon-arrow.svg" alt="">
+        </div>
+      </div>
+      <div class="user_data">
+        <p><span id="years">0</span> years</p>
+        <p><span id="months">0</span> months</p>
+        <p><span id="days">0</span> days</p>
+    </div>
+    </section>
+    
+    <script>
+      function calcularEdad() {
+          // Obtener los valores de los campos de entrada
+          const day = parseInt(document.getElementById('day').value, 10);
+          const month = parseInt(document.getElementById('month').value, 10);
+          const year = parseInt(document.getElementById('year').value, 10);
+
+          // Calcular la edad
+          const currentDate = new Date();
+          const birthDate = new Date(year, month - 1, day); // month - 1 porque en JavaScript los meses van de 0 a 11
+          const timeDifference = currentDate - birthDate;
+
+          // Calcular años, meses y días
+          const ageDate = new Date(timeDifference);
+          const years = ageDate.getUTCFullYear() - 1970;
+          const months = ageDate.getUTCMonth();
+          const days = ageDate.getUTCDate() - 1; // Restar 1 porque el día comienza desde 1
+
+          // Mostrar la edad en los elementos HTML
+          document.getElementById('years').textContent = years;
+          document.getElementById('months').textContent = months;
+          document.getElementById('days').textContent = days;
+      }
+  </script>
+</body>
+</html>
